@@ -1,0 +1,12 @@
+1. local storage z imionami
+2. metoda pobierajaca liczbe graczy, jesli 1 to ukryj pole tekstowe 2, jesli dwoch to wyswielt pole tekstowe 2.
+3. jesli jeden gracz to jakis rnd dla komputera, jesli dwoch to dla 2
+4. przejscie mioedzy stronami
+5. klikanie pol i walidacja:
+    a. wierszy
+    b. kolumn
+    c. skosów
+    d. czy pole jest puste
+    e. czyja kolej
+    f. wygrana/przegrana/remis
+    g. zapisanie wyniku w local storage per player/liczba gier/ranking
