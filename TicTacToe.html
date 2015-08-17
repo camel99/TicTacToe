@@ -1,52 +1,61 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min.css"/>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Welcome to Tic tac toe</title>
-    <link href="_css/camel.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
 </head>
 <body>
 <header id="header">
     <h3>Tic Tac Toe...</h3>
-        <div>
-            <span id="currentTime"></span>
-        </div>
+
+    <div>
+        <span id="currentTime"></span>
+    </div>
     <div class="clear"></div>
 </header>
-<div class="mainContainer">
+<div class="main-container">
     <form>
-        <div class="players_amount">
-        How many players?
-            <button class="btn player_one_btn">1</button>
-            Player's one name:
-            <input type="text" class="player_name player_one_name">
-            <button class="btn player_two_btn">2</button>
-            Player's two name:
-            <input type="text" class="player_name player_two_name">
-            <button class="btn run_game_btn">Run Game</button>
-
+        <div class="players-amount">
+            How many players?
+            <input type="radio" name="players-amount" class="radio-btn one-player" value="one" checked> One
+            <br>
+            <input type="radio" name="players-amount" class="radio-btn two-players" value="two"> Two
         </div>
+        Player's one name:
+        <input type="text" class="player-name player-one-name" placeholder="Player 1">
+
+        <div class="second-player">
+            Player's two name:
+            <input type="text" class="player-name player-two-name" placeholder="Player 2">
+        </div>
+        <button class="btn run-game-btn">Run Game</button>
     </form>
-    </div>
+</div>
 <div>
     <input type="button" id="tester" value="tester">
 </div>
-    <h1 id="what" >
-        <p id="how">
+<h1 id="what">
+    <p id="how">
 
-        </p>
-    </h1>
-    <p id="countRows" onclick="clearWarningMessage()"></p>
+    </p>
+</h1>
+<p id="countRows" onclick="clearWarningMessage()"></p>
 </div>
 <footer class="footer">
     <p id="footerMessage">
         Camel creative technology
     </p>
 </footer>
-<script src="tictactoe.js"></script>
-<script src="storeData.js"></script>
-<script src="init.js"></script>
+<script src="assets/js/tictactoe.js"></script>
+<script src="assets/js/storeData.js"></script>
+<script src="assets/js/init.js"></script>
 
 </body>
 </html>
