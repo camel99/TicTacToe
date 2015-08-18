@@ -1,14 +1,27 @@
 var storeItems = {
     /** Adding players' names to local storage */
     saveInLocalStorage: function () {
-        //var names = document.querySelectorAll('.player-name');
-        var names = $(".player-name");
-        console.log(names);
-        var items = [];
-        for (var i = 0; i < names.length; i++) {
-            var note = names[i].value;
-            items.unshift(note);
+        var data = {
+            firstPlayer: $(".first-player"),
+            firstPlayerName: $(".player-one-name"),
+            names: $(".player-name"),
+            allPlayers: []
+        };
+        if (data.firstPlayer.is(':checked')) {
+            data.allPlayers.unshift(data.firstPlayerName.val());
+        } else {
+            for (var i = 0, playersAmount = data.names.length; i < playersAmount; i++) {
+                var playerName = data.names[i].value;// czemu tu jest value zamiast val()
+                data.allPlayers.unshift(playerName);
+            }
         }
-        localStorage.setItem('players', JSON.stringify(items));
-    }
+        localStorage.setItem('players', JSON.stringify(data.allPlayers));
+    },
+    /** Removing all items from local storage */
+    removeItemsFromLocalStorage: function (storageKeyName) {
+        var localStorageName = storageKeyName;
+        if (localStorageName) {
+            localStorage.removeItem(localStorageName);
+        }
+    },
 }
