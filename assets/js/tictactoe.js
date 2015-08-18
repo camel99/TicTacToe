@@ -2,10 +2,11 @@ var app = app || {};
 
 app.navigation = (function () {
     return {
-        init: function() {
+        init: function () {
             this.startTime();
             this.runGame();
-            this.setSecondPlayerName();
+            this.enableSecondPlayerName();
+            this.hideSecondPlayer();
         },
         /** Displaying current time */
         startTime: function () {
@@ -19,25 +20,25 @@ app.navigation = (function () {
             var currentTime = hour + ":" + minute + ":" + second;
             $("#currentTime").text(currentTime);
         },
-        savePlayersName: function() {
+        savePlayersName: function () {
             storeItems.saveInLocalStorage();
         },
         runGame: function () {
             var run = $(".run-game-btn");
-            run.on('click',this.savePlayersName);
+            run.on('click', this.savePlayersName);
         },
-
-        setSecondPlayerName: function () {
-            //if($('.two-players').is(":checked")){
-            //    alert("doopa");
-            //} else(alert("nie ma doopy"));
-            var playersAmount = $('.two-players');
-            if(playersAmount)
-            playersAmount.on('click',this.displaySecondPlayer());
+        enableSecondPlayerName: function () {
+            var secondPlayer = $('.second-player');
+            secondPlayer.on('click', this.displaySecondPlayer);
         },
         displaySecondPlayer: function () {
-           $('.second-player').attr("style" , "visibility: visible");
-
+            $('.second-player-input').attr("style", "visibility: visible");
+        },
+        hideSecondPlayer: function () {
+            var firstPlayer = $('.first-player');
+            firstPlayer.on('click', function () {
+                $('.second-player-input').attr("style", "visibility: hidden");
+            })
         }
     }
 }());

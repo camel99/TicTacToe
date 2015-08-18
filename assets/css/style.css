@@ -126,6 +126,6 @@ html, body {
 .new-game{
     float: left;
 }
-.second-player{
+.second-player-input{
     visibility: hidden;
 }

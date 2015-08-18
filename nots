@@ -5,10 +5,12 @@
 5. klikanie pol i walidacja:
     a. wierszy
     b. kolumn
-    c. skosów
+    c. skosï¿½w
     d. czy pole jest puste
     e. czyja kolej
     f. wygrana/przegrana/remis
     g. zapisanie wyniku w local storage per player/liczba gier/ranking
 
     https://github.com/camel99/TicTacToe.git
+
+    form dodaj spowrotem ale zrob preventdefault na submit tak zeby nie wysylal i odsiezal strony
