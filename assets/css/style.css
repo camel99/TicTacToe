@@ -127,5 +127,23 @@ html, body {
     float: left;
 }
 .second-player-input{
-    visibility: hidden;
+    display: none;
+}
+.game-view{
+    display: none;
+}
+.game-btn{
+    width: 100px;
+    height: 70px;
+}
+.game-row{
+    /*border: 1px solid black;*/
+    width: 30%;
+    padding: 3px;
+    margin:0;
+}
+.start-new-game-btn{
+    width: 90px;
+    height: 50px;
+    border: none;
 }

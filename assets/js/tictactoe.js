@@ -8,6 +8,11 @@ app.navigation = (function () {
             this.enableSecondPlayerName();
             this.hideSecondPlayer();
             this.disableFormSubmit();
+
+            //this.parameters.$gameView = $('.game-view');
+        },
+        parameters:{
+            $gameView: $('.game-view')
         },
         /** Displaying current time */
         startTime: function () {
@@ -26,10 +31,12 @@ app.navigation = (function () {
         },
         runGame: function () {
             var run = $(".run-game-btn"),
-                self =this;
-            run.on('click', function(){
+                self = this;
+            run.on('click', function () {
                 storeItems.removeItemsFromLocalStorage('players');
                 self.savePlayersName();
+                self.toggleGameBoard();
+                self.hideGameForm();
             });
         },
         enableSecondPlayerName: function () {
@@ -37,18 +44,29 @@ app.navigation = (function () {
             secondPlayer.on('click', this.displaySecondPlayer);
         },
         displaySecondPlayer: function () {
-            $('.second-player-input').attr("style", "visibility: visible");
+            $('.second-player-input').attr("style", "display: block");
         },
         hideSecondPlayer: function () {
             var firstPlayer = $('.first-player');
             firstPlayer.on('click', function () {
-                $('.second-player-input').attr("style", "visibility: hidden");
+                $('.second-player-input').attr("style", "display: none");
             })
         },
-        disableFormSubmit: function(){
-            $("form").submit(function(e){
+        disableFormSubmit: function () {
+            $("form").submit(function (e) {
                 e.preventDefault();
             });
+        },
+        toggleGameBoard: function () {
+            if(this.parameters.$gameView.is(':hidden')) {
+                this.parameters.$gameView.attr("style", "display: block");
+            } else {
+                this.parameters.$gameView.attr("style", "display: none");
+            }
+        },
+        hideGameForm: function () {
+            $('.game-form').attr("style", "display: none")
         }
+
     }
 }());
