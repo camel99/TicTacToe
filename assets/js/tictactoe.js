@@ -5,15 +5,19 @@ app.navigation = (function () {
         init: function () {
             this.startTime();
             this.runGame();
+            this.startNewGame();
             this.enableSecondPlayerName();
             this.hideSecondPlayer();
             this.disableFormSubmit();
 
             //this.parameters.$gameView = $('.game-view');
+            //this.parameters.$gameView = $('.game-form');
         },
-        parameters:{
-            $gameView: $('.game-view')
+        parameters: {
+            $gameView: $('.game-view'),
+            $gameForm: $('.game-form')
         },
+
         /** Displaying current time */
         startTime: function () {
             var today = new Date(),
@@ -36,6 +40,12 @@ app.navigation = (function () {
                 storeItems.removeItemsFromLocalStorage('players');
                 self.savePlayersName();
                 self.toggleGameBoard();
+            });
+        },
+        startNewGame: function () {
+            var startGame = $(".start-new-game-btn"),
+                self = this;
+            startGame.on('click', function () {
                 self.hideGameForm();
             });
         },
@@ -58,15 +68,18 @@ app.navigation = (function () {
             });
         },
         toggleGameBoard: function () {
-            if(this.parameters.$gameView.is(':hidden')) {
+            if (this.parameters.$gameView.is(':hidden')) {
                 this.parameters.$gameView.attr("style", "display: block");
-            } else {
-                this.parameters.$gameView.attr("style", "display: none");
+                this.parameters.$gameForm.attr("style", "display: none");
             }
         },
         hideGameForm: function () {
-            $('.game-form').attr("style", "display: none")
+            if (this.parameters.$gameForm.is(':hidden')) {
+                this.parameters.$gameForm.attr("style", "display: block");
+                this.parameters.$gameView.attr("style", "display: none");
+            }
         }
-
     }
-}());
+    }()
+    )
+    ;
