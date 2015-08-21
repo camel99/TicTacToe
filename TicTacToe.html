@@ -24,16 +24,20 @@
     <form class="game-form">
         <div class="players-amount">
             How many players?
-            <input type="radio" name="players-amount" class="radio-btn first-player" value="one" checked> One
+            <input type="radio" id="onePlayer" name="players-amount" class="radio-btn first-player" value="one" checked>
+            <label for="onePlayer">One</label>
             <br>
-            <input type="radio" name="players-amount" class="radio-btn second-player" value="two"> Two
+            <input type="radio" id="twoPlayers" name="players-amount" class="radio-btn second-player" value="two">
+            <label for="twoPlayers">Two</label>
         </div>
-        Player's one name:
-        <input type="text" class="player-name player-one-name" placeholder="Player 1">
+        <div class="players-name">
+            <input type="text" class="player-one-name" id="firstPlayerName" placeholder="Player 1">
+            <label for="firstPlayerName">First player name</label>
 
-        <div class="second-player-input">
-            Player's two name:
-            <input type="text" class="player-name player-two-name" placeholder="Player 2">
+            <div class="second-player-input">
+                <input type="text" class="player-two-name" id="secondPlayerName" placeholder="Player 2">
+                <label for="secondPlayerName">Second player name</label>
+            </div>
         </div>
         <button class="btn run-game-btn">Run Game</button>
     </form>
@@ -44,19 +48,19 @@
             <button class="btn game-btn">XO</button>
         </div>
         <div class="game-row-two game-row">
-        <button class="btn game-btn">XO</button>
-        <button class="btn game-btn">XO</button>
-        <button class="btn game-btn">XO</button>
-    </div>
-    <div class="game-row-three game-row">
-        <button class="btn game-btn">XO</button>
-        <button class="btn game-btn">XO</button>
-        <button class="btn game-btn">XO</button>
-    </div>
+            <button class="btn game-btn">XO</button>
+            <button class="btn game-btn">XO</button>
+            <button class="btn game-btn">XO</button>
+        </div>
+        <div class="game-row-three game-row">
+            <button class="btn game-btn">XO</button>
+            <button class="btn game-btn">XO</button>
+            <button class="btn game-btn">XO</button>
+        </div>
         <div>
             <button class="start-new-game-btn">Start new game</button>
         </div>
-</div>
+    </div>
 </div>
 
 <div>
