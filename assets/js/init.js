@@ -1,10 +1,11 @@
 window.onload = function () {
 
-    app.navigation.startTime();// first run to be sure that there is no delay in current time
+    app.formGame.startTime();// first run to be sure that there is no delay in current time
     setInterval(function () {
-        app.navigation.startTime();
+        app.formGame.startTime();
     }, 1000);
-
-
 };
-app.navigation.init();
+app.formGame.init();
+app.boardGame.init();
+app.storeItems.init();
+

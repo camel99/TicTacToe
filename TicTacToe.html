@@ -24,26 +24,29 @@
     <form class="game-form">
         <div class="players-amount">
             How many players?
-            <input type="radio" id="onePlayer" name="players-amount" class="radio-btn first-player" value="one" checked>
+            <input type="radio" id="onePlayer" name="players-amount" class="radio-btn first-player" value="one" checked="checked">
             <label for="onePlayer">One</label>
             <br>
             <input type="radio" id="twoPlayers" name="players-amount" class="radio-btn second-player" value="two">
             <label for="twoPlayers">Two</label>
         </div>
         <div class="players-name">
-            <input type="text" class="player-one-name" id="firstPlayerName" placeholder="Player 1">
+            <input type="text" class="player player-one-name" id="firstPlayerName" placeholder="Player 1">
             <label for="firstPlayerName">First player name</label>
 
             <div class="second-player-input">
-                <input type="text" class="player-two-name" id="secondPlayerName" placeholder="Player 2">
+                <input type="text" class="player player-two-name" id="secondPlayerName" placeholder="Player 2">
                 <label for="secondPlayerName">Second player name</label>
             </div>
         </div>
         <button class="btn run-game-btn">Run Game</button>
     </form>
-    <div class="game-view">
+    <div class="game-board">
+        <div class="local-storage-players">
+            <div class="local-storage-player-one"></div>
+
         <div class="game-row-one game-row">
-            <button class="btn game-btn">XO</button>
+            <button class="btn game-btn dawaj">XO</button>
             <button class="btn game-btn">XO</button>
             <button class="btn game-btn">XO</button>
         </div>
@@ -60,6 +63,7 @@
         <div>
             <button class="start-new-game-btn">Start new game</button>
         </div>
+    </div>
     </div>
 </div>
 
@@ -78,7 +82,8 @@
         Camel creative technology
     </p>
 </footer>
-<script src="assets/js/tictactoe.js"></script>
+<script src="assets/js/formGame.js"></script>
+<script src="assets/js/boardGame.js"></script>
 <script src="assets/js/storeData.js"></script>
 <script src="assets/js/init.js"></script>
 
