@@ -14,3 +14,7 @@
     https://github.com/camel99/TicTacToe.git
 
     form dodaj spowrotem ale zrob preventdefault na submit tak zeby nie wysylal i odsiezal strony
+
+    po kliknieciu button w tablicy musi byc oznaczony jako np. used. Komputer losujac musi losowac z calej nadal tablicy a nie z pomniejszonej (Bo nowa tablica mialaby
+    nowe indexy a powinna miec zawsze te same tak aby buton o index 3 mial go zawsze, jakbym usunal element przed nim to jego index tez sie zmieni)
+    Komputer losuje button z tablicy ale tylko taki ktory !=used.

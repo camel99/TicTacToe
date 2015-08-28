@@ -1,46 +1,66 @@
 var app = app || {};
 
 app.boardGame = (function () {
-        return {
-            init: function () {
-                this.startNewGame();
-                //this.setDataState('button');
-                this.setNewLabel('button', 'clicked');
-            },
-            /** Starting new game, displaying players' form, clearing local storage and setting one player as a default choice */
-            startNewGame: function () {
-                var startGame = $(".start-new-game-btn");
-                startGame.on('click', function () {
-                    app.formGame.hideGameBoard();
-                    app.storeItems.removeItemsFromLocalStorage('players');
-                    app.formGame.clearInputBoxes();
-                    app.formGame.setDefaultPlayer();
-                });
-            },
-            setNewLabel: function (what, newText) {
-                var self = this;
-                $(what).one('click', function () {
-                    $(this).text(newText);
-                    $(this).off('click');
-                    $(this).toggleClass('not-used used');
-                    $(this).trigger(self.computerMove());// moze lepiej jakis callback
-                })
-            },
-            computerMove: function () {
-                var allBtn = $('.not-used');
-                var random = Math.floor(Math.random() * allBtn.length);
-                //var randomChoice = Math.floor(Math.random() * 9) + 1;
-                var button = $('button');
-                var chosenBtn = button.eq(random);
-                if (!chosenBtn.hasClass('used')) {
-                    chosenBtn.text('computer');
+    return {
+        init: function () {
+            this.startNewGame();
+            //this.setDataState('button');
+            this.setNewLabel('.game-btn', 'clicked');
+        },
 
+        /** Starting new game, displaying players' form, clearing local storage and setting one player as a default choice */
+        startNewGame: function () {
+            var startGame = $(".start-new-game-btn"),
+                self = this;
+            startGame.on('click', function () {
+                app.formGame.hideGameBoard();
+                app.storeItems.removeItemsFromLocalStorage('players');
+                app.formGame.clearInputBoxes();
+                app.formGame.setDefaultPlayer();
+                self.clearBoardField();
+            });
+        },
+        setNewLabel: function (what, newText) {
+            var self = this;
+            var allBtn = $('.not-used');
+            console.log(allBtn.length);
+            $(what).one('click', function () {
+                if ($(this).hasClass('used')) {
+                    alert("Field was used");
                 } else {
-                    var newChoice = Math.floor(Math.random() * allBtn.length);
-                        $("button:eq(newChoice)").text('new choice');
-                    $("button:eq(newChoice)").toggleClass('not-used used');
+                    console.log(allBtn.length);
+                    $(this).text(newText);
+                    $(this).toggleClass('not-used used');
+                    //self.computerMove();
+                    self.computerMove();
                 }
+            })
+        },
+        computerMove: function () {
+            var allBtn = $('.not-used'),
+                random = Math.floor(Math.random() * allBtn.length),
+                button = $('.game-btn.not-used'),
+                chosenBtn = button.eq(random);
+            if (chosenBtn.hasClass('used')) {
+                while (chosenBtn.hasClass('used')) {
+                    allBtn = $('.not-used');
+                    random = Math.floor(Math.random() * allBtn.length);
+                    chosenBtn = button.eq(random);
+                }
+                chosenBtn.text('computer');
+                chosenBtn.removeClass('not-used');
+                chosenBtn.addClass('used');
+            } else {
+                chosenBtn.text('computer');
+                chosenBtn.toggleClass('not-used used');
             }
+        },
+        clearBoardField: function(){
+            var gameFields = $('.used');
+            gameFields.toggleClass('.used not-used');
+            gameFields.text('');
         }
-    }()
+
+    }
+}()
 );

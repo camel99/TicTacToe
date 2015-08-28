@@ -69,14 +69,14 @@ app.formGame = (function () {
                     self.removeCheckedAttribute('.second-player');
                 })
             },
-            /** Showing game board and hiding form view*/
+            /** Showing game board and hiding form view */
             showGameBoard: function () {
                 if (this.parameters.$gameBoard.is(':hidden')) {
                     this.parameters.$gameBoard.attr("style", "display: block");
                     this.parameters.$gameForm.attr("style", "display: none");
                 }
             },
-            /** Hiding game board and showing game view*/
+            /** Hiding game board and showing game view */
             hideGameBoard: function () {
                 if (this.parameters.$gameForm.is(':hidden')) {
                     this.parameters.$gameForm.attr("style", "display: block");
