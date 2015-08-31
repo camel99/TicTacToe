@@ -5,12 +5,23 @@ app.boardGame = (function () {
         init: function () {
             this.startNewGame();
             //this.setDataState('button');
-            this.setNewLabel('.game-btn', 'clicked');
+            this.setNewMove('.game-btn', 'clicked');
+        },
+        results: {
+            rows: [
+                [1, 2, 3], [4, 5, 6], [7, 8, 9]
+            ],
+            columns: [
+                [1, 4, 7], [2, 5, 8], [3, 6, 9]
+            ],
+            biases: [
+                [1, 5, 9], [3, 5, 7]
+            ]
         },
 
         /** Starting new game, displaying players' form, clearing local storage and setting one player as a default choice */
         startNewGame: function () {
-            var startGame = $(".start-new-game-btn"),
+            var startGame = $('.start-new-game-btn'),
                 self = this;
             startGame.on('click', function () {
                 app.formGame.hideGameBoard();
@@ -18,9 +29,11 @@ app.boardGame = (function () {
                 app.formGame.clearInputBoxes();
                 app.formGame.setDefaultPlayer();
                 self.clearBoardField();
+                console.log(self.results.columns[0][1]);
+                console.log($('.game-btn')[0]);
             });
         },
-        setNewLabel: function (what, newText) {
+        setNewMove: function (what, newText) {
             var self = this;
             var allBtn = $('.not-used');
             console.log(allBtn.length);
@@ -28,10 +41,9 @@ app.boardGame = (function () {
                 if ($(this).hasClass('used')) {
                     alert("Field was used");
                 } else {
-                    console.log(allBtn.length);
                     $(this).text(newText);
                     $(this).toggleClass('not-used used');
-                    //self.computerMove();
+                    $(this).addClass('X');
                     self.computerMove();
                 }
             })
@@ -49,18 +61,19 @@ app.boardGame = (function () {
                 }
                 chosenBtn.text('computer');
                 chosenBtn.removeClass('not-used');
-                chosenBtn.addClass('used');
+                chosenBtn.addClass('used O');
             } else {
                 chosenBtn.text('computer');
-                chosenBtn.toggleClass('not-used used');
+                chosenBtn.removeClass('not-used');
+                chosenBtn.addClass('used O');
             }
         },
-        clearBoardField: function(){
+        clearBoardField: function () {
             var gameFields = $('.used');
-            gameFields.toggleClass('.used not-used');
+            gameFields.removeClass('used O X');
+            gameFields.addClass('not-used');
             gameFields.text('');
         }
-
     }
 }()
 );
