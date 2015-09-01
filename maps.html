@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script>
+        var map;
+        function drawMap() {
+            var myLocation = new google.maps.LatLng(52.414131, 16.900748);
+            var mapProp = {
+                center: myLocation,
+                zoom: 18,
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            };
+            map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+            var marker = new google.maps.Marker({
+                position: myLocation,
+                map: map,
+                title: 'IOKI Pearson Office',
+                animation: google.maps.Animation.BOUNCE
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: "IOKI Pearson Office"
+            });
+
+            document.addEventListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', drawMap);
+    </script>
+</head>
+
+<body>
+<div id="googleMap" style="width:500px;height:380px;"></div>
+</body>
+
+</html>
