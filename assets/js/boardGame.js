@@ -7,18 +7,6 @@ app.boardGame = (function () {
             //this.setDataState('button');
             this.setNewMove('.game-btn', 'clicked');
         },
-        results: {
-            rows: [
-                [1, 2, 3], [4, 5, 6], [7, 8, 9]
-            ],
-            columns: [
-                [1, 4, 7], [2, 5, 8], [3, 6, 9]
-            ],
-            biases: [
-                [1, 5, 9], [3, 5, 7]
-            ]
-        },
-
         /** Starting new game, displaying players' form, clearing local storage and setting one player as a default choice */
         startNewGame: function () {
             var startGame = $('.start-new-game-btn'),
@@ -29,21 +17,22 @@ app.boardGame = (function () {
                 app.formGame.clearInputBoxes();
                 app.formGame.setDefaultPlayer();
                 self.clearBoardField();
-                console.log(self.results.columns[0][1]);
-                console.log($('.game-btn')[0]);
             });
         },
         setNewMove: function (what, newText) {
             var self = this;
             var allBtn = $('.not-used');
             console.log(allBtn.length);
-            $(what).one('click', function () {
+            $(what).on('click', function () {
                 if ($(this).hasClass('used')) {
                     alert("Field was used");
                 } else {
                     $(this).text(newText);
                     $(this).toggleClass('not-used used');
-                    $(this).addClass('X');
+                    //$(this).addClass('X');
+                    $(this).attr('data-state', 'X');
+                    console.log($('.game-btn').eq(0).attr('data-state'));
+                    self.gameOutcome();
                     self.computerMove();
                 }
             })
@@ -61,18 +50,55 @@ app.boardGame = (function () {
                 }
                 chosenBtn.text('computer');
                 chosenBtn.removeClass('not-used');
-                chosenBtn.addClass('used O');
+                chosenBtn.addClass('used');
+                chosenBtn.attr('data-state','O');
             } else {
                 chosenBtn.text('computer');
                 chosenBtn.removeClass('not-used');
-                chosenBtn.addClass('used O');
+                chosenBtn.addClass('used');
+                chosenBtn.attr('data-state','O');
             }
         },
         clearBoardField: function () {
             var gameFields = $('.used');
-            gameFields.removeClass('used O X');
+            gameFields.removeClass('used');
+            gameFields.removeAttr('data-state');
             gameFields.addClass('not-used');
             gameFields.text('');
+        },
+        $gameBtn: $('.game-btn'),
+        collectResultButtons: function () {
+            var resultButtons = {
+                    rows: [
+                        //[0, 1, 2], [3, 4, 5], [6, 7, 8]
+                        [this.$gameBtn.eq(0).attr('data-state'), this.$gameBtn.eq(1).attr('data-state'), this.$gameBtn.eq(2).attr('data-state')],
+                        [this.$gameBtn.eq(3).attr('data-state'), this.$gameBtn.eq(4).attr('data-state'), this.$gameBtn.eq(5).attr('data-state')],
+                        [this.$gameBtn.eq(6).attr('data-state'), this.$gameBtn.eq(7).attr('data-state'), this.$gameBtn.eq(8).attr('data-state')]
+                    ],
+                    columns: [
+                        //[0, 3, 6], [1, 4, 7], [2, 5, 8]
+                        [this.$gameBtn.eq(0).attr('data-state'), this.$gameBtn.eq(3).attr('data-state'), this.$gameBtn.eq(6).attr('data-state')],
+                        [this.$gameBtn.eq(1).attr('data-state'), this.$gameBtn.eq(4).attr('data-state'), this.$gameBtn.eq(7).attr('data-state')],
+                        [this.$gameBtn.eq(2).attr('data-state'), this.$gameBtn.eq(5).attr('data-state'), this.$gameBtn.eq(8).attr('data-state')]
+                    ],
+                    biases: [
+                        //[0, 4, 8], [2, 4, 6]
+                        [this.$gameBtn.eq(0).attr('data-state'), this.$gameBtn.eq(4).attr('data-state'), this.$gameBtn.eq(8).attr('data-state')],
+                        [this.$gameBtn.eq(2).attr('data-state'), this.$gameBtn.eq(4).attr('data-state'), this.$gameBtn.eq(6).attr('data-state')]
+                    ]
+            };
+            return resultButtons;
+        },
+        gameOutcome: function () {
+            var self = this,
+                resultBtns = self.collectResultButtons();
+            for( var x in resultBtns){
+                for(var j = 0; j < resultBtns[x].length; j++) {
+                    console.log(j);
+                    console.log(x + "-----" + resultBtns[x][j]);
+                }
+            }
+            //console.log(self.collectResultButtons());
         }
     }
 }()
