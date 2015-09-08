@@ -1,25 +1,3 @@
-1. local storage z imionami
-2. metoda pobierajaca liczbe graczy, jesli 1 to ukryj pole tekstowe 2, jesli dwoch to wyswielt pole tekstowe 2.
-3. jesli jeden gracz to jakis rnd dla komputera, jesli dwoch to dla 2
-4. przejscie mioedzy stronami
-5. klikanie pol i walidacja:
-    a. wierszy
-    b. kolumn
-    c. skos�w
-    d. czy pole jest puste
-    e. czyja kolej
-    f. wygrana/przegrana/remis
-    g. zapisanie wyniku w local storage per player/liczba gier/ranking
-
-    https://github.com/camel99/TicTacToe.git
-
-    form dodaj spowrotem ale zrob preventdefault na submit tak zeby nie wysylal i odsiezal strony
-
-    po kliknieciu button w tablicy musi byc oznaczony jako np. used. Komputer losujac musi losowac z calej nadal tablicy a nie z pomniejszonej (Bo nowa tablica mialaby
-    nowe indexy a powinna miec zawsze te same tak aby buton o index 3 mial go zawsze, jakbym usunal element przed nim to jego index tez sie zmieni)
-    Komputer losuje button z tablicy ale tylko taki ktory !=used.
-
-
                         app.alogrithm = {
                             array: [],
                             results: [],

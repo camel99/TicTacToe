@@ -5,7 +5,8 @@ app.boardGame = (function () {
             init: function () {
                 this.bindNewGame();
                 //this.setDataState('button');
-                this.setNewMove('.game-btn', 'clicked');
+                //this.setNewMove('.game-btn', 'clicked');
+                this.x();
             },
             /** Starting new game, displaying players' form, clearing local storage and setting one player as a default choice */
             bindNewGame: function () {
@@ -24,25 +25,30 @@ app.boardGame = (function () {
                 app.formGame.setDefaultPlayer();
                 app.formGame.hideGameBoard();
             },
-            setNewMove: function (what, newText) {
-                var self = this;
-                var allBtn = $('.not-used');
-                console.log(allBtn.length);
-                $(what).on('click', function () {
-                    if ($(this).hasClass('used')) {
-                        alert("Field was used");
-                    } else {
-                        $(this).text(newText);
-                        $(this).toggleClass('not-used used');
-                        $(this).attr('data-state', 'X');
-                       if(self.gameOutcome() === true){
-                           return;
-                       }else {
-                           self.computerMove();
-                       }
-                    }
+            x: function (){
+                this.on('click', function () {
+                    app.algorithm.setNewMove();
                 })
             },
+            //setNewMove: function (what, newText) {
+            //    var self = this;
+            //    var allBtn = $('.not-used');
+            //    console.log(allBtn.length);
+            //    $(what).on('click', function () {
+            //        if ($(this).hasClass('used')) {
+            //            alert("Field was used");
+            //        } else {
+            //            $(this).text(newText);
+            //            $(this).toggleClass('not-used used');
+            //            $(this).attr('data-state', 'X');
+            //           if(self.gameOutcome() === true){
+            //               return;
+            //           }else {
+            //               self.computerMove();
+            //           }
+            //        }
+            //    })
+            //},
             computerMove: function () {
                 var allBtn = $('.not-used'),
                     random = Math.floor(Math.random() * allBtn.length),
