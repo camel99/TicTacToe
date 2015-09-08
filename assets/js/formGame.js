@@ -40,7 +40,6 @@ app.formGame = (function () {
                 var run = $(".run-game-btn"),
                     self = this;
                 run.on('click', function () {
-                    //app.storeItems.removeItemsFromLocalStorage('players');
                     if (self.validatePlayersNames() === true) {
                         return;
                     } else {
@@ -48,7 +47,6 @@ app.formGame = (function () {
                         self.showGameBoard();
                         app.storeItems.retrieveFromLocalStorage();
                     }
-
                 });
             },
             /** Displaying second player and setting checked attribute for second player radio button */

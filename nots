@@ -18,3 +18,31 @@
     po kliknieciu button w tablicy musi byc oznaczony jako np. used. Komputer losujac musi losowac z calej nadal tablicy a nie z pomniejszonej (Bo nowa tablica mialaby
     nowe indexy a powinna miec zawsze te same tak aby buton o index 3 mial go zawsze, jakbym usunal element przed nim to jego index tez sie zmieni)
     Komputer losuje button z tablicy ale tylko taki ktory !=used.
+
+
+                        app.alogrithm = {
+                            array: [],
+                            results: [],
+                            isClicked: function (index) {
+                               return !!array[index];
+                            },
+                            push: function (index, mark) {
+                                this.array[index] = mark;
+                            },
+                            gameOutcome: function () {
+                                //robisz to samo co na buyttonach tylko na tej tablicy
+                            }
+
+                        }
+
+
+                        var index  = 2;
+
+                        if (!app.alogrithm.isClicked(index)) {
+                            array[index] = 'X';
+
+                            if (app.alogrithm.gameOutcome()) {
+
+                            }
+
+                        }

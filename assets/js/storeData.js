@@ -48,7 +48,6 @@ app.storeItems = (function () {
                         localStorageItems = self.getLocalStorageItems('players');
                     var itemsAmount = localStorageItems.players.length;
                     for (var i = 0; i < itemsAmount; i++) {
-                        console.log(localStorageItems.players[i]);
                     }
                 }
             }
