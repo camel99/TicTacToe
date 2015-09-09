@@ -11,15 +11,14 @@ app.algorithm = (function () {
             this.gameFields[index] = mark;
         },
         gameOutcome: function () {
-            //robisz to samo co na buyttonach tylko na tej tablicy
+            //robisz to samo co na buttonach tylko na tej tablicy
         },
-        setNewMove: function () {
-             var index = this.index(this);
+        setNewMove: function (index) {
              if (!this.gameFields[index]) {
                  this.gameFields[index] = 'X';
-                 console.log(this.gameFields[index]);
+                 console.log(this.gameFields);
              } else {
-                 alert('doopa');
+                 alert('Field was used');
              }
         }
     }
