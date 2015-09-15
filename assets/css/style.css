@@ -1,7 +1,7 @@
-    /* http://meyerweb.com/eric/tools/css/reset/
-       v2.0 | 20110126
-       License: none (public domain)
-    */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -107,6 +107,7 @@ html, body {
     margin-bottom: 245px;
     background-color: white;
 }
+
 .btn {
     color: white;
     padding: 7px;
@@ -118,35 +119,43 @@ html, body {
     transition: opacity 0.3s linear;
     border-radius: 1px;
     position: relative;
-    top:20%;
+    top: 20%;
 }
+
 .run-game-btn {
     background: red;
 }
-.new-game{
+
+.new-game {
     float: left;
 }
-.second-player-input{
+
+.second-player-input {
     display: none;
 }
-.game-board{
+
+.game-board {
     display: none;
 }
-.game-btn{
+
+.game-btn {
     width: 100px;
     height: 70px;
 }
-.game-row{
+
+.game-row {
     /*border: 1px solid black;*/
     width: 30%;
     padding: 3px;
-    margin:0;
+    margin: 0;
 }
-.start-new-game-btn{
+
+.start-new-game-btn {
     width: 90px;
     height: 50px;
     border: none;
 }
+
 /*.player-two-name{*/
-    /*position: absolute;*/
+/*position: absolute;*/
 /*}*/
