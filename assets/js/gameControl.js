@@ -249,7 +249,7 @@ app.gameControl = (function () {
                 for (var x = 0; x < resultBtns.length; x++) {
                     var firstElement = this.getGameMark(x, 0),
                         secondElement = this.getGameMark(x, 1),
-                        thirdElement = this.getGameMark(x, 0);
+                        thirdElement = this.getGameMark(x, 2);
                     output[x] = [firstElement, secondElement, thirdElement];
                     console.log(x+": " +output[x]);
                 }
