@@ -42,10 +42,12 @@ app.boardGame = (function () {
         },
         runComputerMove: function () {
             var self = this,
-                btnNumber = app.gameControl.computerMove(),
+                //btnNumber = app.gameControl.computerMove(),// to jest na easy bez logiki
+                btnNumber = app.gameControl.nextComputerMove(),
                 button = $('.game-btn'),
                 chosenBtn = button.eq(btnNumber);
             self.setFieldProperties(chosenBtn, 'O');
+            app.gameControl.clearPlayerMove();
         },
         setFieldProperties: function (what, newText) {
             $(what).text(newText);
