@@ -25,12 +25,12 @@ app.gameControl = (function () {
                     self.addNewMark(index, this.properties.playerMark);
                     this.saveLastPlayerMove(index);
                     this.predictNextMove();
-                    this.blockNextMove();
+                    this.computer();
                 }
             },
             getElementsAmount: function (array) {
                 return array.filter(function (value) {
-                    console.log(value.length);
+                    //console.log(value.length);
                     return value !== undefined
                 }).length;
             },
@@ -251,8 +251,56 @@ app.gameControl = (function () {
                         secondElement = this.getGameMark(x, 1),
                         thirdElement = this.getGameMark(x, 2);
                     output[x] = [firstElement, secondElement, thirdElement];
-                    console.log(x+": " +output[x]);
+                    console.log(x + ": " + output[x]);
+                    var outputItemsAmount = this.getElementsAmount(output[x]);
+                    var result = {};
+                    if (outputItemsAmount === 2) {
+                        if (output[x][0] === output[x][1]) {
+                            result = {
+                                arrayNo: x,
+                                index: 2
+                            };
+                            return result;
+                        }
+                        if (output[x][0] === output[x][2]) {
+                            result = {
+                                arrayNo: x,
+                                index: 1
+                            };
+                            return result;
+                        }
+                        if (output[x][1] === output[x][2]) {
+                            result = {
+                                arrayNo: x,
+                                index: 0
+                            };
+                            return result;
+                        }
+                    }
+                    //else { // poki co na pale
+                    //    result = {
+                    //        arrayNo: 1,
+                    //        index: 1
+                    //    };
+                    //    return result;
+                    //}
                 }
+                result = {
+                    arrayNo: 1,
+                    index: 1
+                };
+                console.log("biezacy wynik" + output);
+                console.log("ostatni rezultat" + result.arrayNo, result.index);
+                return result;
+            },
+            computer: function(){
+                var nextMove = this.blockNextMove();
+                console.log("dawaj dane " + nextMove.arrayNo, nextMove.index)
+                var colection = this.collectResultButtons();
+                var take = colection[nextMove.arrayNo][nextMove.index];
+                var button = this.gameFields[take];
+                console.log("computer should take :" +take);
+                return button;
             }
         }
     }()
