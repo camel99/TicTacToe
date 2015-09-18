@@ -161,3 +161,6 @@ html, body {
 [data-state="O"]{
     background: blue;
 }
+.game-btn.not-used {
+    background: lightgrey;
+}

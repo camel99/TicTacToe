@@ -31,9 +31,11 @@ app.boardGame = (function () {
                     app.gameControl.playerMove(index);
                     self.setFieldProperties(this, 'X');// jak to poprawic
                     if (app.gameControl.gameOutcome() === true) {
-                        return;
+                        return true;
                     } else {
-                        self.runComputerMove();
+                        if(app.formGame.playersAmount() != 2) {
+                            self.runComputerMove();
+                        }
                     }
                 } else {
                     alert('Field was used');
@@ -43,11 +45,12 @@ app.boardGame = (function () {
         runComputerMove: function () {
             var self = this,
                 //btnNumber = app.gameControl.computerMove(),// to jest na easy bez logiki
-                btnNumber = app.gameControl.nextComputerMove(),
+                btnNumber = app.gameControl.computerMove(),
                 button = $('.game-btn'),
                 chosenBtn = button.eq(btnNumber);
+            console.log("zajety button  to " + btnNumber);
             self.setFieldProperties(chosenBtn, 'O');
-            app.gameControl.clearPlayerMove();
+            app.gameControl.gameOutcome();
         },
         setFieldProperties: function (what, newText) {
             $(what).text(newText);

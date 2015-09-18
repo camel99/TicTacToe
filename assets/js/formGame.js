@@ -46,6 +46,7 @@ app.formGame = (function () {
                     self.savePlayersName();
                     self.showGameBoard();
                     app.storeItems.retrieveFromLocalStorage();
+                    self.playersAmount();
                 }
             });
         },
@@ -116,11 +117,14 @@ app.formGame = (function () {
                 }
             }
         },
-        validateFirstPlayer: function () {
-            $('.firstPlayerName').after(document.createTextNode("Hello"));
-        },
         playerNameLength: function (player) {
+            console.log("ilu graczy" + player.val().trim().length);
             return player.val().trim().length
+        },
+        playersAmount: function() {
+            if($('.second-player-radio-btn').prop('checked')){
+                return 2;
+            }
         }
     }
 }()
