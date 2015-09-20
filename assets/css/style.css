@@ -164,3 +164,7 @@ html, body {
 .game-btn.not-used {
     background: lightgrey;
 }
+.game-player-name span {
+    font-size: 20px;
+    color: white;
+}

@@ -10,16 +10,57 @@
     <title>Welcome to Tic tac toe</title>
     <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+        function WebSocketTest()
+        {
+            if ("WebSocket" in window)
+            {
+                alert("WebSocket is supported by your Browser!");
+
+                // Let us open a web socket
+                var ws = new WebSocket("ws://http://localhost:63342/echo");
+
+                ws.onopen = function()
+                {
+                    // Web Socket is connected, send data using send()
+                    ws.send("Message to send");
+                    alert("Message is sent...");
+                };
+
+                ws.onmessage = function (evt)
+                {
+                    var received_msg = evt.data;
+                    alert("Message is received...");
+                };
+
+                ws.onclose = function()
+                {
+                    // websocket is closed.
+                    alert("Connection is closed...");
+                };
+            }
+
+            else
+            {
+                // The browser doesn't support WebSocket
+                alert("WebSocket NOT supported by your Browser!");
+            }
+        }
+
+    </script>
+
 </head>
 <body>
 <header id="header">
     <h3>Tic Tac Toe...</h3>
-
     <div>
         <span id="currentTime"></span>
     </div>
     <div class="clear"></div>
 </header>
+<div>
+    <h4 class="game-player-name">Player name: </h4>
+</div>
 <div class="main-container">
     <form class="game-form">
         <div class="players-amount">
@@ -83,6 +124,9 @@
     <p id="footerMessage">
         Camel creative technology
     </p>
+    <div id="sse">
+        <a href="javascript:WebSocketTest()">Run WebSocket</a>
+    </div>
 </footer>
 <script src="assets/js/formGame.js"></script>
 <script src="assets/js/boardGame.js"></script>

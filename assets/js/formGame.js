@@ -47,6 +47,7 @@ app.formGame = (function () {
                     self.showGameBoard();
                     app.storeItems.retrieveFromLocalStorage();
                     self.playersAmount();
+                    self.displayerPlayerName();
                 }
             });
         },
@@ -118,13 +119,23 @@ app.formGame = (function () {
             }
         },
         playerNameLength: function (player) {
-            console.log("ilu graczy" + player.val().trim().length);
             return player.val().trim().length
         },
         playersAmount: function() {
             if($('.second-player-radio-btn').prop('checked')){
                 return 2;
             }
+        },
+        displayerPlayerName: function(){
+            var playersNames = app.storeItems.getLocalStorageItems('players'),
+                firstPlayer = playersNames.players[0],
+                secondPlayer = playersNames.players[1];
+            //var text = $('.game-player-name').text();
+            $('.game-player-name').append('<span>'+ firstPlayer + '</span>');
+
+    },
+        clearPlayerName: function(){
+            $('.game-player-name span').remove();
         }
     }
 }()

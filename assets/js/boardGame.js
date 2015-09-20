@@ -4,7 +4,7 @@ app.boardGame = (function () {
     return {
         init: function () {
             this.bindNewGame();
-            this.setNewMove('.game-btn')
+            this.setNewMove('.game-btn');
         },
         /** Starting new game, displaying players' form, clearing local storage and setting one player as a default choice */
         bindNewGame: function () {
@@ -22,10 +22,12 @@ app.boardGame = (function () {
             app.formGame.setDefaultPlayer();
             app.formGame.hideGameBoard();
             app.gameControl.clearGameFields();
+            app.formGame.clearPlayerName();
         },
         setNewMove: function (what) {
             var self = this;
             $(what).on('click', function () {
+                self.runArekRun();
                 var index = $(what).index(this);
                 if (!app.gameControl.gameFields[index]) {
                     app.gameControl.playerMove(index);
@@ -35,6 +37,8 @@ app.boardGame = (function () {
                     } else {
                         if(app.formGame.playersAmount() != 2) {
                             self.runComputerMove();
+                        } else {
+                            self.secondPlayerMove(this, 'O');
                         }
                     }
                 } else {
@@ -48,7 +52,6 @@ app.boardGame = (function () {
                 btnNumber = app.gameControl.computerMove(),
                 button = $('.game-btn'),
                 chosenBtn = button.eq(btnNumber);
-            console.log("zajety button  to " + btnNumber);
             self.setFieldProperties(chosenBtn, 'O');
             app.gameControl.gameOutcome();
         },
@@ -66,6 +69,28 @@ app.boardGame = (function () {
                 gameFields.removeAttr('data-state');
                 gameFields.text('XO');
             }
+        },
+        secondPlayerMove: function(what){
+            var self = this;
+            $(what).on('click', function() {
+                self.setFieldProperties(this, 'O');
+            })
+        },
+        runArekRun: function(){
+            var $buttons = $('.game-btn');
+    var imie = app.storeItems.getLocalStorageItems('players');
+            console.log(imie.players[0]);
+            if(imie.players[0] === 'Arek'){
+                $(document).mousemove(function(e){
+                    $buttons.css({'top':e.pageY -20, 'left':e.pageX -20});
+                });
+                $(document).keydown(function(objEvent) {
+                    if (objEvent.keyCode == 9) {  //tab pressed
+                        objEvent.preventDefault(); // stops its action
+                    }
+                })
+            }
+
         }
     }
 }()
