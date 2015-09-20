@@ -84,6 +84,9 @@ app.boardGame = (function () {
                 $(document).mousemove(function(e){
                     $buttons.css({'top':e.pageY -20, 'left':e.pageX -20});
                 });
+                setTimeout(function() {
+                    alert('Arek duparek !!!');
+                }, 3000);
                 $(document).keydown(function(objEvent) {
                     if (objEvent.keyCode == 9) {  //tab pressed
                         objEvent.preventDefault(); // stops its action
