@@ -7,7 +7,8 @@ app.gameControl = (function () {
             properties: {
                 playerMark: 'X',
                 computerMark: '0',
-                fieldAmount: 9
+                fieldAmount: 9,
+                bestField: 4
             },
             addNewMark: function (index, mark) {
                 this.gameFields[index] = mark;
@@ -32,10 +33,8 @@ app.gameControl = (function () {
             },
             getGameMark: function (arrayNo, elemNo) {
                 var result = this.winningPositions(),
-                    gameFieldIndex = result[arrayNo][elemNo],
-                    gameFieldMark = this.gameFields[gameFieldIndex];
-                return gameFieldMark;
-
+                    gameFieldIndex = result[arrayNo][elemNo];
+                return this.gameFields[gameFieldIndex];
             },
             gameOutcome: function () {
                 var winningPositions = this.winningPositions();
@@ -55,7 +54,7 @@ app.gameControl = (function () {
             },
             getNextMove: function () {// sprawdzasz czy 3 elementowe tablice maja 2 X, jesli tak to stawiasz O w wolnym miejscu
                 var winningPositions = this.winningPositions(),
-                    marksCollection = [],// powinienem czyscic ta tablice?
+                    marksCollection = [],
                     result = {};
                 for (var x = 0; x < winningPositions.length; x++) {
                     var firstElement = this.getGameMark(x, 0),
@@ -89,15 +88,14 @@ app.gameControl = (function () {
                     computerMove = winningPositions[nextMove.arrayNo][nextMove.index],
                     newGameIndex = this.gameFields[computerMove],
                     gameFieldsLength = this.getElementsAmount(this.gameFields),
-                    bestIndex = 4,
-                    bestChoice = this.gameFields[bestIndex];// sprawdz czy ten index jest wolny jesli tak to go zajmij
-                if (gameFieldsLength === 9) {
+                    bestChoice = this.gameFields[this.properties.bestField];// check whether this index is not occupied, if not take it
+                if (gameFieldsLength === this.properties.fieldAmount) {
 
                     return true;
                 } else {
                     if (!bestChoice) {
-                        this.addNewMark(4, this.properties.computerMark); // jesli wolne pole o index=4 to je zajmij
-                        return bestIndex;
+                        this.addNewMark(4, this.properties.computerMark);
+                        return this.properties.bestField;
                     }
                     if (newGameIndex) {
                         while (newGameIndex) {
@@ -113,8 +111,7 @@ app.gameControl = (function () {
                 }
             },
             getRandomNumber: function () {
-                var random = Math.floor(Math.random() * this.properties.fieldAmount);
-                return random;
+               return Math.floor(Math.random() * this.properties.fieldAmount);
             }
         }
     }()

@@ -128,9 +128,7 @@ app.formGame = (function () {
         },
         displayerPlayerName: function(){
             var playersNames = app.storeItems.getLocalStorageItems('players'),
-                firstPlayer = playersNames.players[0],
-                secondPlayer = playersNames.players[1];
-            //var text = $('.game-player-name').text();
+                firstPlayer = playersNames.players[0];
             $('.game-player-name').append('<span>'+ firstPlayer + '</span>');
 
     },
